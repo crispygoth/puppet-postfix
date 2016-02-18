@@ -6,7 +6,7 @@ class postfix::service {
     require     => Class['postfix::files'],
   }
   service { 'postfix':
-    ensure    => running,
+    ensure    => $::postfix::service_ensure,
     enable    => true,
     hasstatus => true,
     restart   => $::postfix::params::restart_cmd,

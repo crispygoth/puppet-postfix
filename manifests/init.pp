@@ -67,6 +67,8 @@
 #
 # [*mailx_ensure*]        - (string) The ensure value of the mailx package
 #
+# [*service_ensure*]      - (string) The ensure value of the postfix service
+#
 # === Examples
 #
 #   class { 'postfix':
@@ -105,6 +107,7 @@ class postfix (
   Boolean                         $use_sympa           = false,         # postfix_use_sympa
   String                          $postfix_ensure      = 'present',
   String                          $mailx_ensure        = 'present',
+  String                          $service_ensure      = 'running',
 ) inherits postfix::params {
 
   $_smtp_listen = $mailman ? {
