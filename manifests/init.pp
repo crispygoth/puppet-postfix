@@ -97,6 +97,7 @@ class postfix (
   $use_schleuder       = false,         # postfix_use_schleuder
   $use_sympa           = false,         # postfix_use_sympa
   $postfix_ensure      = 'present',
+  $service_ensure      = 'running',
   $mailx_ensure        = 'present',
 ) inherits postfix::params {
 
@@ -144,7 +145,9 @@ class postfix (
   anchor { 'postfix::begin': } ->
   class { '::postfix::packages': } ->
   class { '::postfix::files': } ~>
-  class { '::postfix::service': } ->
+  class { '::postfix::service':
+    service_ensure => $service_ensure,
+  } ->
   anchor { 'posfix::end': }
 
   if $ldap {

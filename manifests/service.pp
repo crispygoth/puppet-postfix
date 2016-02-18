@@ -1,4 +1,6 @@
-class postfix::service {
+class postfix::service(
+  $service_ensure = 'running',
+) {
   exec { 'restart postfix after packages install':
     command     => regsubst($::postfix::params::restart_cmd, 'reload', 'restart'),
     refreshonly => true,
@@ -6,7 +8,7 @@ class postfix::service {
     require     => Class['postfix::files'],
   }
   service { 'postfix':
-    ensure    => running,
+    ensure    => $service_ensure,
     enable    => true,
     hasstatus => true,
     restart   => $::postfix::params::restart_cmd,
