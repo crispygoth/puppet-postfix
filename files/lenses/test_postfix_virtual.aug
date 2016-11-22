@@ -11,7 +11,7 @@ virtual-alias.domain     anything
 postmaster@virtual-alias.domain  postmaster
 user1@virtual-alias.domain       address1
 user2@virtual-alias.domain   
-    address2,
+    address_2,
     address3
 root    robert.oot@domain.com
 @example.net  root,postmaster
@@ -30,7 +30,7 @@ test Postfix_Virtual.lns get conf =
     { "destination" = "address1" }
   }
   { "pattern" = "user2@virtual-alias.domain"
-    { "destination" = "address2" }
+    { "destination" = "address_2" }
     { "destination" = "address3" }
   }
   { "pattern" = "root"
