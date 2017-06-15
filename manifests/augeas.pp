@@ -8,7 +8,6 @@ class postfix::augeas {
     ensure       => present,
     lens_content => file("${module_path}/files/lenses/postfix_transport.aug"),
     test_content => file("${module_path}/files/lenses/test_postfix_transport.aug"),
-    stock_since  => '1.0.0',
   }
   augeas::lens {'postfix_virtual':
     ensure       => present,
