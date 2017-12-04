@@ -50,6 +50,8 @@
 #
 # [*root_mail_recipient*] - (string)
 #
+# [*chroot*]              - (undef/boolean) Whether postfix should be run in a chroot
+#
 # [*satellite*]           - (boolean) Whether to use as a satellite
 #                           (implies MTA)
 #
@@ -99,6 +101,7 @@ class postfix (
   Optional[String]                $relayhost           = undef,         # postfix_relayhost
   Boolean                         $manage_root_alias   = true,
   Variant[Array[String], String]  $root_mail_recipient = 'nobody',      # root_mail_recipient
+  Optional[Boolean]               $chroot              = undef,
   Boolean                         $satellite           = false,
   String                          $smtp_listen         = '127.0.0.1',   # postfix_smtp_listen
   Boolean                         $use_amavisd         = false,         # postfix_use_amavisd
@@ -108,6 +111,7 @@ class postfix (
   String                          $postfix_ensure      = 'present',
   String                          $mailx_ensure        = 'present',
   String                          $service_ensure      = 'running',
+  Boolean                         $service_enabled     =  true,
 ) inherits postfix::params {
 
   $_smtp_listen = $mailman ? {

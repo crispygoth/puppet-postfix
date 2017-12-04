@@ -7,7 +7,7 @@ class postfix::service {
   }
   service { 'postfix':
     ensure    => $::postfix::service_ensure,
-    enable    => true,
+    enable    => $::postfix::service_enabled,
     hasstatus => true,
     restart   => $::postfix::params::restart_cmd,
   }
